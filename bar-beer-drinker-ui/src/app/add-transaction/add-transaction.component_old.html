@@ -1,0 +1,53 @@
+<div class="container">
+  <h1>Add a Transaction in "{{barName}}"</h1>
+  <br>
+  <form>
+    <div class="form-group form-inline">
+      <label for="transactionId">Transaction ID:</label>
+      <input type="number" class="form-control" id="transactionId" required>
+    </div>
+
+    <div class="form-group">
+        <label for="payer">Drinker</label>
+        <select class="form-control" id="payer" required>
+            <option *ngFor="let payer of drinkers" [value]="drinkers">{{payer.firstName + ' ' + payer.lastName}}</option>
+        </select>
+    </div>
+
+    <div class="form-inline form-group mb-3">
+      <label for="bought">Category of Item Purchased</label>
+      <select (change)="updateItems($event.target.selectedIndex)" class="form-control ml-4 mr-5" id="category" required>
+        <option *ngFor="let category of categories" [value]="categories">{{category}}</option>
+      </select>
+      <label for="bought">Name of Item Purchased</label>
+      <select class="form-control ml-4" id="bought" required>
+        <option *ngFor="let item of items" [value]="items">{{item}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="quantity">Quantity</label>
+      <input type="number" class="form-control" id="quantity" required>
+    </div>
+        
+    <div class="form-group">
+      <label for="total">Total</label>
+      <input type="number" class="form-control" id="total" placeholder="$" required>
+    </div>
+        
+    <div class="form-group">
+      <label for="dayIssued">Day of Purchase</label>
+      <select class="form-control" id="dayIssued" required>
+        <option *ngFor="let day of daysOfWeek" [value]="daysOfWeek">{{day}}</option>>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="timeIssued">Time of Purchase</label>
+      <input type="time" class="form-control" placeholder="HH:mm:ss" id="timeIssued" required>
+    </div>
+
+    <button type="add" class="btn btn-success">Add</button>
+
+  </form>
+</div>

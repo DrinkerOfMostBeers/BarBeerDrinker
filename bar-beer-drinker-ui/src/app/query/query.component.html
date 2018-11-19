@@ -1,0 +1,47 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Query the Database</h1>
+    <p class="beer-details">Type in the query to evaluate against the database</p>
+  </div>
+</div>
+
+<div class="container-fluid mx-3">
+  <div class="row">
+    <div class="col mx-5">
+      <form [formGroup]="queryForm" (ngSubmit)="onSubmit()">
+        <label for="query">
+          <h4>Query to Evaluate:</h4>
+        </label>
+        <br>
+        <textarea formControlName="query" rows="5" style="width: 60%" class="form-control" required></textarea>
+        <br>
+        <div *ngIf="queryForm.controls['query'].errors && queryForm.controls['query'].errors.error" class="alert alert-danger">
+          If you want to use the following operations: <strong>[INSERT | UPDATE | DELETE]</strong> <br>
+          You can do so over at <a routerLink='/modifications'>Modify Tables Page</a>
+        </div>
+        <button type="submit" [disabled]="!queryForm.valid" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+  <div class="row" *ngIf="response || table">
+    <div class="col mx-5">
+      <br>
+    <h4>Result:</h4>
+      <br>
+      <h5 *ngIf="response">{{response}}</h5>
+      <p-table [value]="table" [style]="{'overflow': 'hidden'}" *ngIf="table">
+        <ng-template pTemplate="header" let-header[0]>
+          <tr>
+            <th *ngFor="let header of headers">{{header}}</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-drinker>
+          <tr>
+            <td *ngFor="let header of headers">{{drinker[header]}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+
+</div>

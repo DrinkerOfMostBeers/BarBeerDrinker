@@ -1,0 +1,37 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Transactions made by {{drinkerName}}</h1>
+  </div>
+</div>
+
+<div class="container">
+
+  <p-table [value]="transactions" [style]="{'overflow': 'hidden'}">
+    <ng-template pTemplate="header" *ngIf=transactions>
+        <tr>
+            <th>Transaction ID</th>
+            <th>Seller</th>
+            <th>Items Purchased</th>
+            <th>Quantity</th>
+            <th>Order Total</th>
+            <th>Issued On</th>
+          </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-transaction>
+      <tr>
+        <td>{{transaction.transactionId}}</td>
+        <td>{{transaction.seller}}</td>
+        <td>{{transaction.bought}}</td>
+        <td>{{transaction.quantity}}</td>
+        <td>{{transaction.total}}</td>
+        <td>{{transaction.issued}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <div>
+    <br style="line-height: 15">
+    <h3 class="text-center">There are no transactions for this user</h3>
+  </div>
+</div>
+
+<br><br>

@@ -1,0 +1,27 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container" style="white-space: pre-wrap;">
+        <h1 class="display-4">{{barName}}</h1>
+        <p class="bar-details" *ngIf="barDetails">
+            {{barDetails?.address}} <span *ngIf="barDetails.address && barDetails.city">| </span>{{ barDetails?.city }}
+            <br>
+            {{barDetails?.phone}}
+            <br>
+            {{barDetails?.hours}}
+            <a routerLink="/bar/{{barName}}/add">Add Transaction</a>
+        </p>
+    </div>
+</div>
+
+<div class="container">
+    <br>
+    <div id='spenderGraph'></div>
+    <br><br><br>
+    <div id='beerGraph'></div>
+    <br><br><br>
+    <div id='manufacturerGraph'></div>
+    <br><br><br>
+    <div id='timeDistributionGraph'></div>
+    <br><br><br>
+    <div id='dayDistributionGraph'></div>
+    <br>
+</div>

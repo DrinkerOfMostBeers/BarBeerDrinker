@@ -1,0 +1,32 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+      <h1 class="display-4">{{drinkerName}}</h1>
+      <p class="drinker-details" *ngIf="drinkerDetails">
+          {{drinkerDetails?.address}} <span *ngIf="drinkerDetails.address && drinkerDetails.city">| </span>{{ drinkerDetails?.city }}
+          <br>
+          {{drinkerDetails?.phone}}
+          <br>
+          <a routerLink="/drinker/{{drinkerName}}/transactions"><p>Transactions</p></a>
+      </p>
+  </div>
+</div>
+
+<div class="container">
+  <br>
+  <div id='ordersGraph'></div>
+  <br><br><br>
+  <div id='mondaySpendingsGraph'></div>
+  <br><br><br>
+  <div id='tuesdaySpendingsGraph'></div>
+  <br><br><br>
+  <div id='wednesdaySpendingsGraph'></div>
+  <br><br><br>
+  <div id='thursdaySpendingsGraph'></div>
+  <br><br><br>
+  <div id='fridaySpendingsGraph'></div>
+  <br><br><br>
+  <div id='saturdaySpendingsGraph'></div>
+  <br><br><br>
+  <div id='sundaySpendingsGraph'></div>
+  <br>
+</div>

@@ -1,0 +1,114 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Add a Transaction to "{{seller}}"</h1>
+    </div>
+</div>
+
+<div class="container-fluid mx-5">
+    <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+
+        <div class="row mx-5">
+            <div class="col-align-start mt-1 mr-2">
+                <label for="transactionIdInput">Transaction ID:</label>
+            </div>
+            <div class="col-align-start mr-5">
+                <input type="number" formControlName="transactionId" class="form-control inline" required>
+            </div>
+            <div class="col-align-start mt-1 mr-2">
+                <label>Drinker:</label>
+            </div>
+            <div class="col-align-start mr-5">
+                <select formControlName="payer" class="form-control" required>
+                    <option *ngFor="let drinker of drinkers" [value]="drinker">{{drinker}}</option>
+                </select>
+            </div>
+            <div class="col-align-center">
+                <button (click)="addItem()" class="btn btn-success">Add Item</button>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row mx-5">
+            <div formArrayName="itemsArray">
+                <div *ngFor="let item of itemsArray.controls; let i=index;" [formGroupName]="i">
+                    <div class="row mx-1">
+                        <div class="col-align-start mt-1 mr-2">
+                            <label>Category:</label>
+                        </div>
+                        <div class="col-align-start mr-5">
+                            <select (change)="updateItems($event.target.selectedIndex, i)" formControlName="category"
+                                class="form-control" required>
+                                <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+                            </select>
+                        </div>
+                        <div class="col-align-start mt-1 mb-3 mr-2">
+                            <label>Name:</label>
+                        </div>
+                        <div class="col-align-start mr-5">
+                            <select formControlName="name" class="form-control" required>
+                                <option *ngFor="let item of items[i]" [value]="item">{{item}}</option>
+                            </select>
+                        </div>
+                        <div class="col-align-start mt-1 mr-2">
+                            <label>Quantity:</label>
+                        </div>
+                        <div class="col-align-start mr-5">
+                            <input type="number" formControlName="quantity" class="form-control" required>
+                        </div>
+                        <div class="col-align-end">
+                            <button (click)="removeItem(i)" class="btn btn-outline-danger">Remove Item</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row mx-5">
+            <div class="col-align-start mt-1 mr-2">
+                <label>Day of Purchase:</label>
+            </div>
+            <div class="col-align-start mr-5">
+                <select formControlName="dayIssued" class="form-control" required>
+                    <option *ngFor="let day of daysOfWeek" [value]="day">{{day}}</option>
+                </select>
+            </div>
+            <div class="col-align-start mt-1 mr-2">
+                <label>Time of Purchase:</label>
+            </div>
+            <div class="col-align-start mr-5">
+                <input type="time" formControlName="timeIssued" class="form-control" required>
+            </div>
+            <div class="col-align-start mt-1 mr-2">
+                <label>Tip:</label>
+            </div>
+            <div class="col-align-start mr-5">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">$</div>
+                    <input type="number" formControlName="tip" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row mx-5">
+            <button type="submit" [disabled]="!transactionForm.valid" class="btn btn-primary">Submit</button>
+        </div>
+        <div class="row mx-5">
+            <h6 *ngIf="finalTotal"><br>Order Total: ${{finalTotal}}</h6>
+        </div>
+
+    </form>
+
+    <div *ngIf="response">
+        <br>
+        <div class="row mx-5">
+            <h4>Result:</h4>
+        </div>
+        <p class="row mx-5">{{response}}</p>
+    </div>
+
+</div>

@@ -1,0 +1,18 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container" style="white-space: pre-wrap;">
+        <h1 class="display-4">{{beerName}}</h1>
+        <p class="beer-details" *ngIf="beerDetails">
+            Made by {{beerDetails?.manufacturer}}
+        </p>
+    </div>
+</div>
+
+<div class="container">
+    <br>
+    <div id='sellsGraph'></div>
+    <br><br><br>
+    <div id='consumersGraph'></div>
+    <br><br><br>
+    <div id='timeDistributionGraph'></div>
+    <br>
+  </div>

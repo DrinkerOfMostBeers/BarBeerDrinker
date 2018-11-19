@@ -1,0 +1,31 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Modify Database Tables</h1>
+    <p class="beer-details">Type in the modification query to execute</p>
+  </div>
+</div>
+
+<div class="container-fluid mx-5">
+  <div class="row">
+    <div class="col-7 col-mr-4">
+      <form [formGroup]="queryForm" (ngSubmit)="onSubmit()">
+        <label for="query">
+          <h4>Modification Query to Execute:</h4>
+        </label>
+        <br>
+        <textarea formControlName="query" rows="5" class="form-control" required></textarea>
+        <br>
+          <div *ngIf="queryForm.dirty && queryForm.controls['query'].errors && queryForm.controls['query'].errors.error" class="alert alert-danger">
+            Please enter a modification keyword: <strong>[INSERT | UPDATE | DELETE]</strong> <br>
+            Otherwise visit the <a routerLink='/query'>Execute Query Page</a>
+          </div>
+        <button type="submit" [disabled]="!queryForm.valid" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    <div class="ml-5 col-3" *ngIf="response">
+      <h4>Result:</h4>
+      <br>
+      <h5>{{response}}</h5>
+    </div>
+  </div>
+</div>
